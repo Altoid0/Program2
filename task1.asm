@@ -43,14 +43,14 @@ main:
 	beq $s0, 1, processGrade
 	beq $s0, 2, exit
 	
-	#the case for a differnt input other than 1 or 2
+	#Create the case for an input other than 1 or 2
 
 processGrade:
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
-	#please enter a score as an integer value
+	#prints: please enter a score as an integer value
 	li $v0, 4
 	la $a0, prompt1
 	syscall 
@@ -60,7 +60,7 @@ processGrade:
 	syscall
 	move $s1, $v0
 	
-	#The grade is:
+	#prints: The grade is:
 	li $v0, 4
 	la $a0, prompt2
 	syscall
@@ -84,7 +84,7 @@ reTry:
 	li $a1, 10
 	syscall
 	
-	#loads a register form the buffer and then compares the register to either 'Y' or 'y' if it is then reloop the program 
+	#loads a register from the buffer, compares and then jumps to appropriate label
 	lb $s2, buffer
 	beq $s2, 'Y', processGrade
 	beq $s2, 'y', processGrade
@@ -94,7 +94,7 @@ reTry:
 	j INVALID
 
 INVALID: 
-	#would you like to enter a new score?
+	#prints invalid input prompt
 	li $v0, 4
 	la $a0, invalidInput
 	syscall
@@ -111,7 +111,7 @@ INVALID:
 	li $a1, 10
 	syscall
 	
-	#loads a register form the buffer and then compares the register to either 'Y' or 'y' if it is then reloop the program 
+	#loads a register from the buffer, compares and then jumps to appropriate label
 	lb $s2, buffer
 	beq $s2, 'Y', processGrade
 	beq $s2, 'y', processGrade
