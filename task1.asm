@@ -9,7 +9,7 @@
 
 .data
 dashes: .asciiz "\n--------------------------------------------\n"
-mainMenu: .asciiz "---------------MAIN MENU---------------\n"
+mainMenu: .asciiz "\n---------------MAIN MENU---------------\n"
 usrMenu: .asciiz "1)Get letter Grade\n2)Exit Program\n\nEnter '1' or '2' for your selection: "
 prompt1: .asciiz "\nPlease enter a score as an integer value: "
 prompt2: .asciiz "\nThe grade is: "
