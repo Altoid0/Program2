@@ -22,6 +22,7 @@ gradeC: .asciiz "C"
 gradeD: .asciiz "D"
 gradeF: .asciiz "E"
 invalidInput: "\nInvalid input, please choose the correct selection\n"
+exitPrompt: .asciiz "\nThe program will now exit."
 .text
 main:
 	#shows the "----------main menu----------" with the dashes
@@ -165,5 +166,9 @@ grade_D:
 	j reTry
 	
 exit:
+	li $v0, 4
+	la $a0, exitPrompt
+	syscall
+	
 	li $v0, 10
 	syscall
