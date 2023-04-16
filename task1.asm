@@ -20,7 +20,7 @@ gradeA: .asciiz "A"
 gradeB: .asciiz "B"
 gradeC: .asciiz "C"
 gradeD: .asciiz "D"
-gradeF: .asciiz "E"
+gradeF: .asciiz "F"
 invalidInput: "\nInvalid input, please choose the correct selection\n"
 exitPrompt: .asciiz "\nThe program will now exit."
 .text
@@ -70,6 +70,7 @@ processGrade:
 	bgt $s1, 79, grade_B
 	bgt $s1, 69, grade_C
 	bgt $s1, 59, grade_D
+	bgt $s1, 0, grade_F
 	
 	j INVALID
 	
@@ -157,6 +158,17 @@ grade_C:
 grade_D:
 	li $v0, 4
 	la $a0, gradeD
+	syscall
+	
+	li $v0, 4
+	la $a0, dashes
+	syscall 
+	
+	j reTry
+
+grade_F:
+	li $v0, 4
+	la $a0, gradeF
 	syscall
 	
 	li $v0, 4
