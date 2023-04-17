@@ -67,7 +67,7 @@ processGrade:
 	la $a0, prompt1
 	syscall 
 	
-	#here I will grab the integer and throw a grade
+	#Get user input as an integer and store it in $s1 for later comparison
 	li $v0, 5
 	syscall
 	move $s1, $v0
@@ -87,7 +87,7 @@ processGrade:
 	j invalid
 	
 reTry:
-	#would you like to enter a new score?
+	#Ask the user if they would like to enter a new score
 	li $v0, 4
 	la $a0, rePromptMenu
 	syscall
@@ -116,64 +116,81 @@ invalid:
 	j reTry
 
 grade_A:
+	#Prints the grade A
 	li $v0, 4
 	la $a0, gradeA
 	syscall
 	
+	#Prints the dashes
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
+	#Ask the user if they want to enter a new score
 	j reTry
 
 grade_B:
+	#Prints the grade B
 	li $v0, 4
 	la $a0, gradeB
 	syscall
 	
+	#Prints the dashes
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
+	#Ask the user if they want to enter a new score
 	j reTry
 
 grade_C:
+	#Prints the grade C
 	li $v0, 4
 	la $a0, gradeC
 	syscall
 	
+	#Prints the dashes
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
+	#Ask the user if they want to enter a new score
 	j reTry
 
 grade_D:
+	#Prints the grade D
 	li $v0, 4
 	la $a0, gradeD
 	syscall
-	
+
+	#Prints the dashes
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
+	#Ask the user if they want to enter a new score
 	j reTry
 
 grade_F:
+	#Prints the grade F
 	li $v0, 4
 	la $a0, gradeF
 	syscall
 	
+	#Prints the dashes
 	li $v0, 4
 	la $a0, dashes
 	syscall 
 	
+	#Ask the user if they want to enter a new score
 	j reTry
 	
 exit:
+	#Tell the user the program will now exit
 	li $v0, 4
 	la $a0, exitPrompt
 	syscall
 	
+	#Exit the program
 	li $v0, 10
 	syscall
