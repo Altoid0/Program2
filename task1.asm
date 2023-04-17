@@ -46,6 +46,7 @@ main:
 	beq $s0, 2, exit
     #case for an input other than 1 or 2
     bgt $s0, 2, invalidMainMenuOption
+	blt $s0, 1, invalidMainMenuOption
 
 invalidMainMenuOption:
     li $v0, 4
