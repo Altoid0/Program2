@@ -57,6 +57,7 @@ invalidMainMenuOption:
 
 
 processGrade:
+	#prints dashes for visual separation
 	li $v0, 4
 	la $a0, dashes
 	syscall 
@@ -76,6 +77,7 @@ processGrade:
 	la $a0, prompt2
 	syscall
 	
+	#compares the inputted value to the grade values and jumps to the appropriate label
 	bgt $s1, 89, grade_A
 	bgt $s1, 79, grade_B
 	bgt $s1, 69, grade_C
@@ -111,27 +113,8 @@ INVALID:
 	la $a0, invalidInput
 	syscall
 
-	
-	#would you like to enter a new score?
-	li $v0, 4
-	la $a0, rePromptMenu
-	syscall
-	
-	#Takes in a string from the user and puts it in the buffer
-	li $v0, 8
-	la $a0, buffer
-	li $a1, 10
-	syscall
-	
-	#loads a register from the buffer, compares and then jumps to appropriate label
-	lb $s2, buffer
-	beq $s2, 'Y', processGrade
-	beq $s2, 'y', processGrade
-	beq $s2, 'N', main
-	beq $s2, 'n', main
-	
-	j INVALID
-	
+	j reTry
+
 grade_A:
 	li $v0, 4
 	la $a0, gradeA
