@@ -58,54 +58,54 @@ main:
 	
 	
 evaluate:
-    # if y = 1, then result is x
+	# if y = 1, then result is x
 	beq $s1, 1, printResult
-    
-    # if y = 0, then result is 1
+
+	# if y = 0, then result is 1
 	beq $s1, $zero, printOne
 
 	# else we need to multiply x by itself y times
 
-    # multiply x by itself since we already have a copy of x in $s2
+	# multiply x by itself since we already have a copy of x in $s2
 	mult $s2, $s0
 	
-    # grab the hi and lo bits of the result
+	# grab the hi and lo bits of the result
 	mfhi $t0
 	mflo $t1
 	
-    # add the hi and lo bits together to get the result
+	# add the hi and lo bits together to get the result
 	add $s2, $t0, $t1
 	
-    # increment the loop counter
+	# increment the loop counter
 	addi $t7, $t7, 1
 
-    # jump to evaluate if the loop counter is less than y
+	# jump to evaluate if the loop counter is less than y
 	blt $t7, $s1, evaluate
 	
 	# loop is done, print the result
 	j printResult
 	
 printResult:
-    # print the result
+	# print the result
 	li $v0, 1
 	move $a0, $s2
 	syscall
 	
-    # exit the program
+	# exit the program
 	j exit
 	
 printOne:
-    # print 1 since y = 0
+	# print 1 since y = 0
 	addi $s1, $s1, 1
 	
 	li $v0, 1
 	move $a0, $s1
 	syscall
 
-    # exit the program	
+	# exit the program	
 	j exit
 	
 exit:
-    # exit the program
+	# exit the program
 	li $v0, 10
 	syscall

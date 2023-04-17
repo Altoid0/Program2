@@ -44,16 +44,16 @@ main:
 	#Returns a grade or exits the program
 	beq $s0, 1, processGrade
 	beq $s0, 2, exit
-    #case for an input other than 1 or 2
-    bgt $s0, 2, invalidMainMenuOption
+	#case for an input other than 1 or 2
+	bgt $s0, 2, invalidMainMenuOption
 	blt $s0, 1, invalidMainMenuOption
 
 invalidMainMenuOption:
-    li $v0, 4
-    la $a0, invalidMenu
-    syscall
+	li $v0, 4
+	la $a0, invalidMenu
+	syscall
 
-    j main
+	j main
 
 
 processGrade:
