@@ -84,7 +84,7 @@ processGrade:
 	bgt $s1, 59, grade_D
 	bgt $s1, 0, grade_F
 	
-	j INVALID
+	j invalid
 	
 reTry:
 	#would you like to enter a new score?
@@ -105,9 +105,9 @@ reTry:
 	beq $s2, 'N', main
 	beq $s2, 'n', main
 	
-	j INVALID
+	j invalid
 
-INVALID: 
+invalid: 
 	#prints invalid input prompt
 	li $v0, 4
 	la $a0, invalidInput
