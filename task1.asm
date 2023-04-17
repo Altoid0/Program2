@@ -2,7 +2,7 @@
 #Date 4/5/2023
 #Assignment: Program 2: Practice with Conditionals and Loops
 #Objectives
-# Display main mento to user
+# Display main menu to user
 # take int input from user
 # Depening on input and ask for grade percentage
 # based on inputted value display the correct grade letter to the user
@@ -22,6 +22,7 @@ gradeC: .asciiz "C"
 gradeD: .asciiz "D"
 gradeF: .asciiz "F"
 invalidInput: "\nInvalid input, please choose the correct selection\n"
+invalidMenu: "\nInvalid menu input, please choose either 1 or 2\n"
 exitPrompt: .asciiz "\nThe program will now exit."
 .text
 main:
@@ -43,8 +44,16 @@ main:
 	#Returns a grade or exits the program
 	beq $s0, 1, processGrade
 	beq $s0, 2, exit
-	
-	#Create the case for an input other than 1 or 2
+    #case for an input other than 1 or 2
+    bgt $s0, 2, invalidMainMenuOption
+
+invalidMainMenuOption:
+    li $v0, 4
+    la $a0, invalidMenu
+    syscall
+
+    j main
+
 
 processGrade:
 	li $v0, 4
